@@ -1,0 +1,24 @@
+ion-header {
+  ion-toolbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #3880ff;
+    color: white;
+
+    ion-title {
+      font-size: 1.2rem;
+      margin-left: 10px;
+    }
+
+    ion-button {
+      color: white;
+      ion-icon {
+        margin-right: 5px;
+      }
+    }
+
+    ion-img {
+      margin-left: 10px;
+    }
+  }
+}

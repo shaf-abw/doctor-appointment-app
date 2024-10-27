@@ -1,0 +1,127 @@
+<ion-content *ngIf="doctor && doctor.name">
+  <ion-card>
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="10" class="ion-text-center">
+          <!-- Image as Avatar with Redirection to Profile Page -->
+          <ion-avatar class="profile-avatar" (click)="goToProfile()">
+            <img src="assets/images/doctor-avatar.png" alt="Doctor Avatar">
+          </ion-avatar>
+        </ion-col>
+        <ion-col size="2" class="ion-text-center">
+          <!-- Arrow Icon Button for Redirection -->
+          <ion-button fill="clear" (click)="goToProfile()" class="profile-button">
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid *ngIf="!editMode; else editTemplate">
+      <ion-row>
+        <ion-col size="2">
+        </ion-col>
+        <ion-col size="7">
+          <h2>{{ doctor.name }}</h2>
+          <p>{{ doctor.specialty }} | {{ doctor.degree }}</p>
+          <p>{{ doctor.age }} years</p>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button (click)="toggleEditMode()">
+            <ion-icon name="create-outline"></ion-icon>
+            <span *ngIf="!editMode">Edit</span>
+            <span *ngIf="editMode">Save</span>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-item lines="none">
+            <ion-icon name="mail-outline" slot="start"></ion-icon>
+            <ion-label>Email: {{ doctor.email }}</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-item lines="none">
+            <ion-icon name="call-outline" slot="start"></ion-icon>
+            <ion-label>Mobile: {{ doctor.mobile }}</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <!-- <ion-row>
+        <ion-col size="6">
+          <ion-item lines="none">
+            <ion-icon name="water-outline" slot="start"></ion-icon>
+            <ion-label>Blood Group: {{ doctorBloodGroup }}</ion-label>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item lines="none">
+            <ion-icon name="body-outline" slot="start"></ion-icon>
+            <ion-label>Height: {{ doctorHeight }} cm</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <ion-item lines="none">
+            <ion-icon name="barbell-outline" slot="start"></ion-icon>
+            <ion-label>Weight: {{ doctorWeight }} kg</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row> -->
+    </ion-grid>
+    <ng-template #editTemplate>
+      <!-- Editable Form -->
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Doctor Name</ion-label>
+            <ion-input [(ngModel)]="doctor.name"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Specialty</ion-label>
+            <ion-input [(ngModel)]="doctor.specialty"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Degree</ion-label>
+            <ion-input [(ngModel)]="doctor.degree"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Date of Birth</ion-label>
+            <ion-input id="date" [value]="formattedDate"></ion-input>
+            <ion-popover trigger="date" >
+                <ng-template>
+                    <ion-datetime presentation="date" aria-hidden="false" aria-modal="true"
+                    [(ngModel)]="doctor.dob" display-format="YYYY-MM-DD"
+                    (ionChange)="onDateChange($event)"
+                  ></ion-datetime>
+                </ng-template>
+            </ion-popover>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="email" [(ngModel)]="doctor.email"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="floating">Mobile Number</ion-label>
+            <ion-input type="tel" [(ngModel)]="doctor.mobile"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-button expand="full" (click)="saveDoctorDetails()">Save</ion-button>
+        <ion-button expand="full" (click)="editMode = false" color="medium">Cancel</ion-button>
+      </ion-row>
+    </ng-template>
+  </ion-card>
+</ion-content>

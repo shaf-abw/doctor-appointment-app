@@ -1,0 +1,54 @@
+<!-- Side Menu (Drawer) -->
+<ion-menu side="start" menuId="first" content-id="main-content">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>
+        <!-- <ion-img src="assets/logo.png" style="width: 40px; height: 40px; margin-right: 10px;"></ion-img> -->
+        {{ doctorName }}
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <!-- Dashboard -->
+      <ion-item routerLink="/doctor-dashboard">
+        <ion-icon slot="start" name="home-outline"></ion-icon>
+        <ion-label>Dashboard</ion-label>
+      </ion-item>
+
+      <!-- Manage Clinics -->
+      <ion-item routerLink="/clinic-management">
+        <ion-icon slot="start" name="business-outline"></ion-icon>
+        <ion-label>Manage Clinics</ion-label>
+      </ion-item>
+
+      <!-- Manage Appointments -->
+      <ion-item routerLink="/appointments">
+        <ion-icon slot="start" name="calendar-outline"></ion-icon>
+        <ion-label>Manage Appointments</ion-label>
+      </ion-item>
+
+      <!-- Doctor's Name -->
+      <ion-item>
+        <ion-icon slot="start" name="person-outline"></ion-icon>
+        <ion-label>{{ doctorName }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<!-- Main Content with Header -->
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button> <!-- Menu Button to open the side menu -->
+    </ion-buttons>
+    <ion-title>Doctor Appointment App</ion-title>
+    <ion-item slot="end">
+      <ion-toggle [(ngModel)]="paletteToggle" (ionChange)="toggleChange($event)" justify="space-between"
+        ></ion-toggle
+      >
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
